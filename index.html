@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooting with gun</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <audio id="audio" src="music/sound.wav" autostart="false"></audio>
+    </section>
+    <script>
+         const sound = document.querySelector('audio');
+
+        document.addEventListener('click',(e)=>{
+            const body = document.querySelector('body');
+
+            //add Bullet
+            const Bullet = addBullet(e);
+            body.appendChild(Bullet);
+
+            // sound 
+            sound.play();
+
+             //appear Blood
+             const Blood = addBlood(e);
+             body.appendChild(Blood);
+
+             setTimeout(()=>{
+                Bullet.remove();
+                Blood.remove();
+            },4000)
+        })
+
+        function addBullet (e){
+            const bullet = document.createElement('span');
+            bullet.classList.add('bullet');
+
+            let x = e.offsetX;
+            let y = e.offsetY;
+
+            bullet.style.left = `${x}px`;
+            bullet.style.top = `${y}px`;
+
+            return bullet;
+        }
+
+        const images = [
+            "url('imgs/blood1.png')",
+            "url('imgs/blood2.png')",
+            "url('imgs/blood3.png')",
+            "url('imgs/blood4.png')",
+        ]
+
+        function addBlood(e){
+            const blood = document.createElement('span');
+             blood.classList.add('blood');
+             
+              //add random blood image
+             let bg = images[Math.floor(Math.random() * images.length)];
+             blood.style.backgroundImage = bg;
+             
+             let randomX = Math.random() * innerWidth;
+             let randomY = Math.random() * innerHeight;
+             
+             blood.style.left = `${randomX}px`;
+             blood.style.top = `${randomY}px`;
+            
+             return blood;
+        }
+    </script>
+</body>
+</html>
