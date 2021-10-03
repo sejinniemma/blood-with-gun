@@ -1,4 +1,4 @@
-# blood-with-gun
+# blood-with-gun with Javascript
 
 ## What is this?
 - When you click display,blood will apear randomly with small hole
